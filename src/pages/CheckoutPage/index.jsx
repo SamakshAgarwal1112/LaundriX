@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react';
-import Navbar from '../../components/Navbar';
 import {
   Button,
-  Image,
-  Text,
-  Flex,
   Divider,
+  Flex,
+  Image,
   Select,
+  Text,
   useToast,
 } from '@chakra-ui/react';
-import useOrderStore from '../../components/Store/OrderStore';
+import axios from 'axios';
 import moment from 'moment';
+import React, { useEffect } from 'react';
 import { MdOutlineLocationSearching } from 'react-icons/md';
 import { TfiLocationPin } from 'react-icons/tfi';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../../components/Navbar';
+import useOrderStore from '../../components/Store/OrderStore';
 
 function loadScript(src) {
   return new Promise((resolve) => {
@@ -315,27 +315,28 @@ const CheckoutPage = () => {
             </Flex>
           </Flex>
         </Flex>
+        <Button
+          mt="3rem"
+          onClick={() => {
+            pickupTime &&
+            deliveryTime &&
+            pickupDate &&
+            pickupAddress &&
+            dropAddress
+              ? displayRazorpay()
+              : toast({
+                  position: 'top',
+                  title: 'Error !',
+                  description: 'Fill in all the details.',
+                  status: 'error',
+                  variant: 'subtle',
+                  duration: 2000,
+                });
+          }}
+        >
+          Pay and Confirm
+        </Button>
       </Flex>
-      <Button
-        onClick={() => {
-          pickupTime &&
-          deliveryTime &&
-          pickupDate &&
-          pickupAddress &&
-          dropAddress
-            ? displayRazorpay()
-            : toast({
-                position: 'top',
-                title: 'Error !',
-                description: 'Fill in all the details.',
-                status: 'error',
-                variant: 'subtle',
-                duration: 2000,
-              });
-        }}
-      >
-        Pay and Confirm
-      </Button>
     </>
   );
 };

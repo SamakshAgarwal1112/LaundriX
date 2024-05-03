@@ -6,6 +6,7 @@ import OrderList from './pages/OrderList';
 import PreLoader from './components/PreLoader';
 import CheckoutPage from './pages/CheckoutPage';
 import OrderConfirmationPage from './pages/OrderConfirmation';
+import OrderHistoryPage from './pages/OrderHistoryPage';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Cookies from 'universal-cookie';
@@ -52,6 +53,10 @@ function App() {
         <Route
           path="/OrderConfirmationPage"
           element={isLoading ? <PreLoader /> : <OrderConfirmationPage />}
+        />
+        <Route
+          path="/OrderHistoryPage"
+          element={isLoading ? <PreLoader /> : <OrderHistoryPage />}
         />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
